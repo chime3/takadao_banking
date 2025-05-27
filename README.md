@@ -92,7 +92,8 @@ The API will be available at `http://localhost:8080`
 
 ## API Documentation (Swagger)
 
-- Access Swagger UI at: [http://localhost:8080/swagger/index.html](http://localhost:8080/swagger/index.html)
+- **Local Swagger UI:** [http://localhost:8080/swagger/index.html](http://localhost:8080/swagger/index.html)
+- **Live Swagger UI:** [https://takadao-banking-api.onrender.com/swagger/index.html](https://takadao-banking-api.onrender.com/swagger/index.html)
 - To authorize, click "Authorize" and enter your JWT as: `Bearer <token>`
 
 ## API Endpoints
@@ -138,6 +139,32 @@ go test ./internal/middleware -v
 
 - Tests for authentication and admin middleware are in `internal/middleware/auth_middleware_test.go`.
 - Add more tests in the corresponding `*_test.go` files in each package.
+
+## Testing Production API
+
+You can test the live production API using the Swagger UI:
+
+- **Live Swagger UI:** [https://takadao-banking-api.onrender.com/swagger/index.html](https://takadao-banking-api.onrender.com/swagger/index.html)
+
+### 1. Add Admin Credentials
+- Use the admin login endpoint to obtain a JWT token:
+  - **Endpoint:** `POST /api/v1/auth/admin/login`
+  - **Body:**
+    ```json
+    {
+      "email": "admin@takadao.com",
+      "password": "admin123"
+    }
+    ```
+- The response will include a JWT token.
+
+### 2. Authorize with Bearer JWT Token
+- In the Swagger UI, click the "Authorize" button.
+- Enter your token in the following format:
+  ```
+  Bearer <your_jwt_token>
+  ```
+- Now you can access protected admin endpoints.
 
 ## Performance Considerations
 
